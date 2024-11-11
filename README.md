@@ -15,3 +15,6 @@ Currently the next goals are:
 Other probable goals that are currently marked as optional:
 - plus operator for `LispLexicalScope` rather than working with lists.
 - compilation to bytecode/LLVM
+
+Things that need to be fixed:
+1. Change arguments to be stored as a list of pairs (probably not a good idea to store them in a map, since order might not be preserved)
