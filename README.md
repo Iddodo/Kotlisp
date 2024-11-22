@@ -17,6 +17,7 @@ Other probable goals that are currently marked as optional:
 - compilation to bytecode/LLVM
 
 Things that need to be fixed in parser:
+1. recur whitespace (maybe tone down usage of `when` for more concrete logic)
 1. Make `nil` parseable (to make this easier, add keyword checking capabilities to char iterator)
 1. Check quote on numeric character occurrence
 1. Configure parser to accept dotted notation of form `(value . nil)`
