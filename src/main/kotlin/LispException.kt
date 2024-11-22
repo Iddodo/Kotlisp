@@ -29,3 +29,13 @@ class LispIllegalFunctionInvocationException(
     append("Got: $inputArguments\n")
     append("Message: $message")
 })
+
+sealed class LispParserException() : Exception()
+
+class LispParserUnclosedStringException() : LispParserException()
+class LispParserUnclosedListException() : LispParserException()
+class LispParserDotWithoutLeftSideException() : LispParserException()
+class LispParserDotWithoutRightSideException() : LispParserException()
+class LispParserEmptyQuoteException() : LispParserException()
+class LispParserBadIntegerConversionException() : LispParserException()
+class LispParserGeneralException() : LispParserException()

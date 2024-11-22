@@ -4,9 +4,7 @@ data class LispConsCell(
     val first: LispEvaluable,
     val rest: LispEvaluable,
     val quoted: Boolean = false
-) : LispEvaluable() {
-    override fun toString(): String = super.toString()
-}
+) : LispCell()
 
 internal tailrec fun LispConsCell.toList(acc: MutableList<LispEvaluable> = mutableListOf()): List<LispEvaluable> =
     when (rest) {

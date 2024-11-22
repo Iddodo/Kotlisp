@@ -14,14 +14,14 @@ object TestUtils {
                                 LispSymbol("+"),
                                 LispConsCell(
                                     LispInt(2),
-                                    LispConsCell(LispInt(3), LispNil()),
+                                    LispConsCell(LispInt(3), LispNil),
                                 ),
                             ),
-                            LispNil(),
+                            LispNil,
                         ),
                     ),
                 ),
-                LispNil(),
+                LispNil,
             )
         )
     )

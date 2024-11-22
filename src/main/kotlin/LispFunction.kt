@@ -4,7 +4,6 @@ data class LispFunction<R : LispEvaluable>(
     val arguments: LispArguments,
     private val call: LispArguments.ArgumentContext.() -> R,
 ): LispEvaluable() {
-    override fun toString(): String = super.toString()
     operator fun invoke(inputArguments: List<LispEvaluable>, symbol: LispSymbol? = null, contexts: List<LispLexicalScope> = listOf()): R {
         try {
             val context = arguments.createContext(inputArguments, contexts)

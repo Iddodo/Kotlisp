@@ -1,6 +1,8 @@
 package kotlisp.core
 
 import kotlisp.LispEvaluable
+import kotlisp.LispFunction
+import kotlisp.LispFunctionBuilder
 import kotlisp.LispInt
 import kotlisp.LispString
 import kotlisp.LispSymbol

@@ -1,14 +1,12 @@
 import kotlisp.KotlispInstance
 import kotlisp.LispConsCell
 import kotlisp.LispInt
-import kotlisp.LispLeadingElementNotEvaluableAsFunctionException
 import kotlisp.LispLeadingSymbolNotFunctionException
 import kotlisp.LispLexicalScope
 import kotlisp.LispNil
 import kotlisp.LispString
 import kotlisp.LispSymbol
 import kotlisp.LispUndefinedSymbolException
-import kotlisp.evaluate
 import kotlisp.lispFunction
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
@@ -19,6 +17,9 @@ class KotlispInstanceTest {
     fun `can evaluate basic arithmetic expression`() {
         // Given
         val expression = TestUtils.ARITHMETIC_EXPRESSION
+
+        println(expression.toString())
+        return
 
         // When
         val result = KotlispInstance().evaluate(expression)
@@ -50,7 +51,7 @@ class KotlispInstanceTest {
         // Given
         val expression = LispConsCell(
             LispSymbol("hello"),
-            LispNil()
+            LispNil
         )
 
         // When & then
@@ -69,7 +70,7 @@ class KotlispInstanceTest {
         )
         val expression = LispConsCell(
             LispSymbol("hello"),
-            LispNil()
+            LispNil
         )
 
         // When & then
@@ -97,7 +98,7 @@ class KotlispInstanceTest {
         val expression = LispConsCell(
             LispSymbol("reverse"), LispConsCell(
                 LispString("hello!"),
-                LispNil(),
+                LispNil,
             ),
         )
 

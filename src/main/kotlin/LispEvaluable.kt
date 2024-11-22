@@ -1,24 +1,21 @@
 package kotlisp
 
 sealed class LispEvaluable {
-    override fun toString(): String {
-        val acc = StringBuilder()
-        stringifyLispEvaluable(this, acc)
-        return acc.toString()
-    }
 }
 
-data class LispString(val value: String) : LispEvaluable() {
-    override fun toString(): String = super.toString()
-}
-data class LispInt(val value: Int) : LispEvaluable() {
-    override fun toString(): String = super.toString()
-}
-data class LispSymbol(val value: String) : LispEvaluable() {
-    override fun toString(): String = super.toString()
+fun LispEvaluable.toLispFormattedString(): String {
+    val acc = StringBuilder()
+    stringifyLispEvaluable(this, acc)
+    return acc.toString()
 }
 
-class LispNil : LispEvaluable()
+data class LispString(val value: String) : LispEvaluable()
+data class LispInt(val value: Int) : LispEvaluable()
+data class LispSymbol(val value: String, val quoted: Boolean = false) : LispEvaluable()
+
+sealed class LispCell() : LispEvaluable() {}
+
+object LispNil : LispCell()
 
 fun LispEvaluable.evaluate(contexts: List<LispLexicalScope>): LispEvaluable =
     when (this) {
@@ -63,6 +60,9 @@ private fun stringifyLispEvaluable(
         is LispSymbol -> acc.append(evaluable.value)
         is LispFunction<out LispEvaluable> -> acc.append("(lambda (${evaluable.arguments.keys.joinToString(" ")}))")
         is LispConsCell -> {
+            if (evaluable.quoted) {
+                acc.append("'")
+            }
             acc.append("(")
             // Process 'first' separately (this utilizes the stack)
             stringifyLispEvaluable(evaluable.first, acc)
@@ -94,7 +94,7 @@ private tailrec fun stringifyLispRest(
     }
 }
 
-internal fun LispEvaluable.asParameterList(): List<LispEvaluable> =
+private fun LispEvaluable.asParameterList(): List<LispEvaluable> =
     when (this) {
         is LispNil -> emptyList()
         !is LispConsCell -> listOf(this)
