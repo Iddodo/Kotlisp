@@ -17,6 +17,6 @@ Other probable goals that are currently marked as optional:
 - compilation to bytecode/LLVM
 
 Things that need to be fixed:
-1. Make `nil` parseable
+1. Make `nil` parseable (to make this easier, add keyword checking capabilities to char iterator)
 1. Configure parser to accept dotted notation of form `(value . nil)` 
 1. Change arguments to be stored as a list of pairs (probably not a good idea to store them in a map, since order might not be preserved)
