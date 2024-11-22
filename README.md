@@ -16,7 +16,10 @@ Other probable goals that are currently marked as optional:
 - plus operator for `LispLexicalScope` rather than working with lists.
 - compilation to bytecode/LLVM
 
-Things that need to be fixed:
+Things that need to be fixed in parser:
 1. Make `nil` parseable (to make this easier, add keyword checking capabilities to char iterator)
-1. Configure parser to accept dotted notation of form `(value . nil)` 
+1. Check quote on numeric character occurrence
+1. Configure parser to accept dotted notation of form `(value . nil)`
+
+Things that need to be fixed in general:
 1. Change arguments to be stored as a list of pairs (probably not a good idea to store them in a map, since order might not be preserved)
